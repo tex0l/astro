@@ -5053,6 +5053,36 @@ importers:
         specifier: ^10.2.0
         version: 10.2.0
 
+  packages/upgrade:
+    dependencies:
+      '@astrojs/cli-kit':
+        specifier: ^0.2.3
+        version: 0.2.3
+      node-fetch-native:
+        specifier: ^1.4.0
+        version: 1.4.0
+      which-pm-runs:
+        specifier: ^1.1.0
+        version: 1.1.0
+    devDependencies:
+      '@types/which-pm-runs':
+        specifier: ^1.0.0
+        version: 1.0.0
+      arg:
+        specifier: ^5.0.2
+        version: 5.0.2
+      astro-scripts:
+        specifier: workspace:*
+        version: link:../../scripts
+      chai:
+        specifier: ^4.3.7
+        version: 4.3.7
+      mocha:
+        specifier: ^10.2.0
+        version: 10.2.0
+
+  packages/upgrade/test/fixtures/not-empty: {}
+
   scripts:
     dependencies:
       arg:
@@ -5191,7 +5221,7 @@ packages:
   /@astrojs/cli-kit@0.2.3:
     resolution: {integrity: sha512-MjB42mpIG/F2rFtdp4f3NylFCILuFSib2yITSq65fRaDFn8+UC8EMh6T7Jr3YqHAbUY5r8V8QWNgH4keOEO2BA==}
     dependencies:
-      chalk: 5.2.0
+      chalk: 5.3.0
       log-update: 5.0.1
       sisteransi: 1.0.5
     dev: false
@@ -10256,11 +10286,6 @@ packages:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
-  /chalk@5.2.0:
-    resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
-    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-    dev: false
-
   /chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
@@ -10520,7 +10545,7 @@ packages:
     dev: false
 
   /concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
   /console-control-strings@1.1.0:
     resolution: {integrity: sha512-ty/fTekppD2fIwRvnZAVdeOiGd1c7YXEixbgJTNzqcxJWKQnjJ/V1bNEEE6hygpM3WjwHFUVK6HTjWSzV4a8sQ==}
