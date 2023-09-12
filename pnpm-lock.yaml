@@ -5058,9 +5058,6 @@ importers:
       '@astrojs/cli-kit':
         specifier: ^0.2.3
         version: 0.2.3
-      node-fetch-native:
-        specifier: ^1.4.0
-        version: 1.4.0
       which-pm-runs:
         specifier: ^1.1.0
         version: 1.1.0
@@ -5080,8 +5077,6 @@ importers:
       mocha:
         specifier: ^10.2.0
         version: 10.2.0
-
-  packages/upgrade/test/fixtures/not-empty: {}
 
   scripts:
     dependencies:
