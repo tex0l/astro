@@ -210,6 +210,10 @@ export default defineConfig({
 
 ## Cloudflare runtime
 
+Currently supported bindings:
+
+- [Cloudflare D1](https://developers.cloudflare.com/d1/)
+
 You can access the runtime from Astro components through `Astro.locals` inside any .astro` file.
 
 ```astro
