@@ -1,9 +1,6 @@
 import type { AstroConfig, AstroIntegration, RouteData } from 'astro';
 
 import { createRedirectsFromAstroRoutes } from '@astrojs/underscore-redirects';
-import { CacheStorage } from '@miniflare/cache';
-import { NoOpLog } from '@miniflare/shared';
-import { MemoryStorage } from '@miniflare/storage-memory';
 import { AstroError } from 'astro/errors';
 import esbuild from 'esbuild';
 import { Miniflare } from 'miniflare';
@@ -22,6 +19,8 @@ import { wasmModuleLoader } from './utils/wasm-module-loader.js';
 
 export type { AdvancedRuntime } from './entrypoints/server.advanced.js';
 export type { DirectoryRuntime } from './entrypoints/server.directory.js';
+
+// export { Response as MiniflareResponse } from 'miniflare';
 
 type Options = {
 	mode?: 'directory' | 'advanced';
@@ -54,17 +53,6 @@ interface BuildConfig {
 	assets: string;
 	serverEntry: string;
 	split?: boolean;
-}
-
-class StorageFactory {
-	storages = new Map();
-
-	storage(namespace: string) {
-		let storage = this.storages.get(namespace);
-		if (storage) return storage;
-		this.storages.set(namespace, (storage = new MemoryStorage()));
-		return storage;
-	}
 }
 
 export default function createIntegration(args?: Options): AstroIntegration {
@@ -140,6 +128,7 @@ export default function createIntegration(args?: Options): AstroIntegration {
 								script: '',
 								cache: true,
 								cachePersist: true,
+								cacheWarnUsage: true,
 								d1Databases: D1Bindings,
 								d1Persist: true,
 								r2Buckets: R2Bindings,
@@ -161,6 +150,7 @@ export default function createIntegration(args?: Options): AstroIntegration {
 								const namespace = await _mf.getKVNamespace(KVBinding);
 								Reflect.set(bindingsEnv, KVBinding, namespace);
 							}
+							const mfCache = await _mf.getCaches();
 
 							process.env.PWD = originalPWD;
 							const clientLocalsSymbol = Symbol.for('astro.locals');
@@ -183,12 +173,7 @@ export default function createIntegration(args?: Options): AstroIntegration {
 									waitUntil: (_promise: Promise<any>) => {
 										return;
 									},
-									caches: new CacheStorage(
-										{ cache: true, cachePersist: false },
-										new NoOpLog(),
-										new StorageFactory(),
-										{}
-									),
+									caches: mfCache,
 								},
 							});
 							next();
